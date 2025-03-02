@@ -1,6 +1,6 @@
 const User = require('../models/User');
 
-// 📌 Register a new user (No password needed for now)
+
 const register = async (req, res) => {
     try {
         const { name, email, phone } = req.body;
@@ -18,7 +18,7 @@ const register = async (req, res) => {
     }
 };
 
-// 📌 Login user (Dummy logic for now)
+
 const login = async (req, res) => {
     try {
         const { email } = req.body;
@@ -28,14 +28,13 @@ const login = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // 🔹 In a real app, you should verify passwords & generate a JWT token
         res.json({ message: 'Login successful', user });
     } catch (error) {
         res.status(500).json({ message: 'Error logging in', error: error.message });
     }
 };
 
-// 📌 Fetch user profile (Uses userId from query params)
+
 const fetchProfile = async (req, res) => {
     try {
         const { userId } = req.query; 
@@ -53,7 +52,7 @@ const fetchProfile = async (req, res) => {
     }
 };
 
-// 📌 Update user profile (No authentication required)
+
 const updateProfile = async (req, res) => {
     try {
         const { userId } = req.query;
@@ -69,7 +68,7 @@ const updateProfile = async (req, res) => {
     }
 };
 
-// 📌 Update user address
+
 const updateAddress = async (req, res) => {
     try {
         const { userId } = req.query;
@@ -85,7 +84,6 @@ const updateAddress = async (req, res) => {
     }
 };
 
-// 📌 Change password (Dummy logic, needs hashing in future)
 const changePassword = async (req, res) => {
     try {
         const { userId } = req.query;
@@ -94,7 +92,7 @@ const changePassword = async (req, res) => {
         const user = await User.findByPk(userId);
         if (!user) return res.status(404).json({ message: 'User not found' });
 
-        // ⚠️ In production, hash `newPassword` before saving!
+        
         await user.update({ password: newPassword });
 
         res.json({ message: 'Password updated successfully' });
@@ -103,5 +101,5 @@ const changePassword = async (req, res) => {
     }
 };
 
-// 📌 Export all functions
+
 module.exports = { register, login, fetchProfile, updateProfile, updateAddress, changePassword };
