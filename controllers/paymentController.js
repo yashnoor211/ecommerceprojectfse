@@ -1,6 +1,6 @@
 const Payment = require('../models/payment');
 
-// ✅ Make a new payment
+
 const makePayment = async (req, res) => {
     try {
         const { orderId, userId, amount, paymentMethod } = req.body;
@@ -19,7 +19,7 @@ const makePayment = async (req, res) => {
     }
 };
 
-// ✅ Get a single payment by ID
+
 const getPayment = async (req, res) => {
     try {
         const payment = await Payment.findByPk(req.params.id);
@@ -31,7 +31,7 @@ const getPayment = async (req, res) => {
     }
 };
 
-// ✅ Get payment status
+
 const getPaymentStatus = async (req, res) => {
     try {
         const payment = await Payment.findByPk(req.params.id, { attributes: ['status'] });
@@ -43,7 +43,7 @@ const getPaymentStatus = async (req, res) => {
     }
 };
 
-// ✅ Update payment status
+
 const updatePaymentStatus = async (req, res) => {
     try {
         const { status, transactionId } = req.body;
@@ -59,7 +59,7 @@ const updatePaymentStatus = async (req, res) => {
     }
 };
 
-// ✅ Get all payments
+
 const getAllPayments = async (req, res) => {
     try {
         const payments = await Payment.findAll();
