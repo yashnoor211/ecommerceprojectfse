@@ -2,21 +2,21 @@ const Recommendation = require('../models/recommendation');
 const Product = require('../models/Product');
 const Order = require('../models/Order');
 
-// ✅ Generate recommendations (basic version)
+
 const generateRecommendations = async (userId) => {
-    // Fetch past orders of the user
+
     const pastOrders = await Order.findAll({
         where: { userId },
         attributes: ['productId']
     });
 
     if (!pastOrders.length) {
-        // If no past orders, recommend popular products
+       
         const popularProducts = await Product.findAll({ limit: 5 });
         return popularProducts.map(p => ({ userId, productId: p.id, reason: "Popular product" }));
     }
 
-    // Get unique product categories from past orders
+    
     const productIds = pastOrders.map(o => o.productId);
     const products = await Product.findAll({ where: { id: productIds } });
 
@@ -31,7 +31,7 @@ const generateRecommendations = async (userId) => {
     return recommendations.map(p => ({ userId, productId: p.id, reason: "Based on past purchases" }));
 };
 
-// ✅ Fetch recommendations for a user
+
 const getRecommendations = async (req, res) => {
     try {
         const userId = req.params.userId;
@@ -51,7 +51,7 @@ const getRecommendations = async (req, res) => {
     }
 };
 
-// ✅ Refresh recommendations for a user
+
 const refreshRecommendations = async (req, res) => {
     try {
         const userId = req.params.userId;
