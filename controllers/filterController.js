@@ -1,7 +1,6 @@
 const Product = require('../models/Product');
 const { Op } = require('sequelize');
 
-// ✅ Fetch filtered products
 const getFilteredProducts = async (req, res) => {
     try {
         const { category, brand, minPrice, maxPrice, rating } = req.query;
