@@ -1,6 +1,6 @@
 const Brand = require('../models/brand');
 
-// ✅ Create a new brand
+
 const createBrand = async (req, res) => {
     try {
         const { name, description, logo } = req.body;
@@ -13,7 +13,7 @@ const createBrand = async (req, res) => {
     }
 };
 
-// ✅ Get all brands
+
 const getBrands = async (req, res) => {
     try {
         const brands = await Brand.findAll();
@@ -23,7 +23,7 @@ const getBrands = async (req, res) => {
     }
 };
 
-// ✅ Get a single brand by ID
+
 const getBrandById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -37,7 +37,7 @@ const getBrandById = async (req, res) => {
     }
 };
 
-// ✅ Update a brand
+
 const updateBrand = async (req, res) => {
     try {
         const { id } = req.params;
@@ -54,7 +54,7 @@ const updateBrand = async (req, res) => {
     }
 };
 
-// ✅ Delete a brand
+
 const deleteBrand = async (req, res) => {
     try {
         const { id } = req.params;
